@@ -73,8 +73,8 @@ int ExpressionConvert::prefixCalculator(std::string prefix) {
             number = "";
             prevNumber = false;
 
-        } else {
-            number += prefix[i];
+        } else if (prefix[i] != ' ') {
+            number = prefix[i] + number;
             prevNumber = true;
         }
     }
@@ -96,7 +96,7 @@ std::string ExpressionConvert::prefixToInfix(std::string prefix) {
             expression.pop();
 
             std::string temp = "(" + op1 + " " + prefix[i] + " " + op2 + ")";
-            if (i == 0) temp =  op1 + " " + prefix[i] + " " + op2;
+            if (i == 0 || prefix[i] == '*' || prefix[i] == '/') temp =  op1 + " " + prefix[i] + " " + op2;
 
             expression.push(temp);
 
@@ -105,8 +105,8 @@ std::string ExpressionConvert::prefixToInfix(std::string prefix) {
             number = "";
             prevNumber = false;
 
-        } else {
-            number += prefix[i];
+        } else if (prefix[i] != ' ') {
+            number = prefix[i] + number;
             prevNumber = true;
         }
     }
