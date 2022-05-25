@@ -28,12 +28,12 @@ bool ExpressionConvert::isValid(std::string prefix) {
         if (isOperator(prefix[i])) countOperator++;
 
         else if (prefix[i] == ' ' && prevNumber) {
-            if (stoi(number) > 99) return false;
+            // if (stoi(number) > 99) return false;
             countNumber++;
             prevNumber = false;
         } 
         
-        else if (prefix[i] != ' ') {
+        else if (isdigit(prefix[i])) {
             number += prefix[i];
             prevNumber = true;
         }
