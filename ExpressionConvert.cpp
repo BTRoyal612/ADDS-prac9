@@ -28,7 +28,7 @@ bool ExpressionConvert::isValid(std::string prefix) {
         if (isOperator(prefix[i])) countOperator++;
 
         else if (prefix[i] == ' ' && prevNumber) {
-            // if (stoi(number) > 99) return false;
+            if (stoi(number) > 99) return false;
             countNumber++;
             prevNumber = false;
         } 
@@ -81,7 +81,7 @@ int ExpressionConvert::prefixCalculator(std::string prefix) {
             number = "";
             prevNumber = false;
 
-        } else if (prefix[i] != ' ') {
+        } else if (isdigit(prefix[i])) {
             number = prefix[i] + number;
             prevNumber = true;
         }
@@ -113,7 +113,7 @@ std::string ExpressionConvert::prefixToInfix(std::string prefix) {
             number = "";
             prevNumber = false;
 
-        } else if (prefix[i] != ' ') {
+        } else if (isdigit(prefix[i])) {
             number = prefix[i] + number;
             prevNumber = true;
         }
