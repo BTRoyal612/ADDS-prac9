@@ -20,6 +20,7 @@ bool ExpressionConvert::isValid(std::string prefix) {
     int countOperator = 0;
     int countNumber = 0;
 
+    std::string number = "";
     bool prevNumber =  false;
     for (int i = 0; i < prefix.size(); i++) {
         if (!isOperator(prefix[i]) && !isdigit(prefix[i]) && prefix[i] != ' ') return false;
@@ -27,12 +28,15 @@ bool ExpressionConvert::isValid(std::string prefix) {
         if (isOperator(prefix[i])) countOperator++;
 
         else if (prefix[i] == ' ' && prevNumber) {
+            if (stoi(number) > 99) return false;
             countNumber++;
             prevNumber = false;
         } 
         
-        else if (prefix[i] != ' ') prevNumber = true;
-
+        else if (prefix[i] != ' ') {
+            number += prefix[i];
+            prevNumber = true;
+        }
     }
     
     if (prevNumber) countNumber++;
