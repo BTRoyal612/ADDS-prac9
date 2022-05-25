@@ -31,6 +31,7 @@ bool ExpressionConvert::isValid(std::string prefix) {
             if (stoi(number) > 99) return false;
             countNumber++;
             prevNumber = false;
+            number = "";
         } 
         
         else if (isdigit(prefix[i])) {
