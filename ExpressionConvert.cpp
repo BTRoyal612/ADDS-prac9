@@ -2,6 +2,7 @@
 
 #include <string>
 #include <stack>
+#include <cctype>
 #include <iostream>
 
 bool ExpressionConvert::isOperator(char x) {
@@ -21,6 +22,8 @@ bool ExpressionConvert::isValid(std::string prefix) {
 
     bool prevNumber =  false;
     for (int i = 0; i < prefix.size(); i++) {
+        if (!isOperator(prefix[i]) && !isdigit(prefix[i]) && prefix[i] != ' ') return false;
+
         if (isOperator(prefix[i])) countOperator++;
 
         else if (prefix[i] == ' ' && prevNumber) {
@@ -29,6 +32,7 @@ bool ExpressionConvert::isValid(std::string prefix) {
         } 
         
         else if (prefix[i] != ' ') prevNumber = true;
+
     }
     
     if (prevNumber) countNumber++;
