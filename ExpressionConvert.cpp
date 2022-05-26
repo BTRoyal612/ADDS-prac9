@@ -61,6 +61,8 @@ int ExpressionConvert::operatorCalculator(int a, int b, char x) {
 }
 
 int ExpressionConvert::prefixCalculator(std::string prefix) {
+    if (prefix.size() < 2) return stoi(prefix);
+
     std::stack<int> expression;
 
     int len = prefix.size();
@@ -92,6 +94,8 @@ int ExpressionConvert::prefixCalculator(std::string prefix) {
 }
 
 std::string ExpressionConvert::prefixToInfix(std::string prefix) {
+    if (prefix.size() < 2) return prefix;
+
     std::stack<std::string> expression;
 
     int len = prefix.size();
